@@ -21,8 +21,8 @@ urlpatterns = [
     path('submit/',views.SubmitView,name = 'submit'),
     path('evalquiz/<int:id>',views.EvaluatedQuizView,name = 'evalquiz'),
     path('submission/',views.SubmissionView, name = "submission"),
-    path('accounts/',include('allauth.urls')),
-    path('googlelogin/',views.LoginGoogleView, name = 'logingoogle'),
+    #path('accounts/',include('allauth.urls')),
+    #path('googlelogin/',views.LoginGoogleView, name = 'logingoogle'),
 
 
 ]
