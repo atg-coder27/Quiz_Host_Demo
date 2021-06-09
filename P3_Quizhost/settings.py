@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from Projects.P3_Quiz.P3_Quiz.settings import PROJECT_ROOT
+
 from pathlib import Path
 import os
 
