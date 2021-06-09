@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>{{question.current_no}}. {{ question.title }}</h4>
+    <form method="POST">
+        {% csrf_token %}
+        <!-- {% for fm in form %}
+            {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br> 
+        {% endfor %} -->
+        {{form.as_p}}
+        {% if start == last %}
+            
+        {% else %}
+            {% if current == start %}
+                <input type="submit" name="next" value="next"> 
+            {% elif current == last %}
+                <input type="submit" name="previous" value="previous">
+            {% else %}
+                <input type="submit" name="previous" value="previous">
+                <input type="submit" name="next" value="next">
+            {% endif %}
+
+        {% endif %}
+        <input type="submit" name="submit" value="submit">
+        <!-- <input type="submit" name="previous" value="previous">
+        <input type="submit" name="next" value="next"> -->
+    </form>
+</body>
+</html>

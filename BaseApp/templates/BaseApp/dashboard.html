@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Dashboard </h1>
+    <a href="{% url 'logout' %}"> Logout </a>
+    <h1> </h1> 
+    <h1>Ongoing Quiz</h1>
+    <table>
+        <tr>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Start Time</th>
+        <th>End Time </th>
+        <th>Link </th>
+        </tr>
+        {% for quiz in ongoing %}
+            <tr>
+            <td>{{quiz.category}}</td>
+            <td>{{quiz.status}}</td>
+            <td>{{quiz.start_time}} </td>
+            <td>{{quiz.end_time}} </td>
+            <td><a href="{% url 'quiz' quiz.id  %}">Quiz Link </a> </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h1> Future Quiz </h1>
+    <table>
+    <tr>
+        <th>Category</th>
+        <th>Start Time</th>
+        <th>End Time </th>
+    </tr>
+    {% for quiz in future %}
+        <tr>
+        <td> {{quiz.category}}</td>
+        <td> {{quiz.start_time}} </td>
+        <td> {{quiz.end_time}} </td>
+        <td> {{quiz.status}} </td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <h1> Completed Quiz </h1>
+    <table>
+    <tr>
+        <th> Category </th>
+        <th> Start Time</th>
+        <th> End Time</th>
+        <th> Response </th>
+    </tr>
+    {% for quiz in completed %}
+        <tr>
+        <td>{{quiz.category}}</td>
+        <td>{{quiz.start_time}}</td>
+        <td>{{quiz.end_time}}</td>
+        <td><a href="{% url 'evalquiz' quiz.id %}"> Response </a> </td>
+        </tr><br>
+    </table>
+    {% endfor %}
+
+
+
+    
+</body>
+</html>
