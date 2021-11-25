@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    {% block cssfiles %}
+    {% endblock cssfiles %}
+    <title>Document</title>
+</head>
+<body id="bg" style="background-image: url('{% static "images/background.jpg"%}')";>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Quiz App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'dashboard' %}">Dashboard </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'quizpast' %}">Completed Quizes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'quizfuture' %}">Upcoming Quizes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'quizcurrent' %}">Current Quizes</a>
+            </li>
+
+            </ul>
+        </div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <form class="form-inline" action= "{% url 'signup' %}" method = "POST">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">My Profile</button>
+                </form>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" action= "{% url 'logout' %}" method = "POST">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Logout</button>
+                </form>
+            </li>
+        </ul>
+        {% comment %} <span class="navbar-text">
+            Navbar text with an inline element 
+        </span> {% endcomment %}
+    </nav>
+
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>

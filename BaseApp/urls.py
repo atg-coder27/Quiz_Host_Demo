@@ -6,6 +6,7 @@ from django.contrib.auth import views as authviews
 
 urlpatterns = [
     path('signup/',views.SignUpView, name='signup'),
+    path('',views.RedirectHomeView, name = 'redirecthome'),
     path('login/',views.LoginView,name = 'login'),
     path('home/',views.HomeView, name = 'home'),
     path('dashboard/',views.DashBoardView, name = 'dashboard'),
@@ -16,6 +17,9 @@ urlpatterns = [
     path('reset/done/',authviews.PasswordResetCompleteView.as_view(), name = 'password_reset_complete'),
     path('accounts/login/',views.RedirectView,name = 'redirectlogin'),
     path('dashboard/',views.DashBoardView, name = 'dashboard'),
+    path('quiz/current/',views.QuizCurrentView, name = 'quizcurrent'),
+    path('quiz/past/',views.QuizPastView,name = 'quizpast'),
+    path('quiz/future',views.QuizFutureView, name = 'quizfuture'),
     path('dashboard/<int:id>',views.QuizView, name = 'quiz'),
     path('dashboard/<int:id>/<int:no>',views.QuestionView, name = 'question'),
     path('submit/',views.SubmitView,name = 'submit'),
@@ -23,6 +27,6 @@ urlpatterns = [
     path('submission/',views.SubmissionView, name = "submission"),
     path('accounts/',include('allauth.urls')),
     path('googlelogin/',views.LoginGoogleView, name = 'logingoogle'),
-
+    path('base/',views.base, name = 'base'),
 
 ]

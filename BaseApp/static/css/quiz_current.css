@@ -1,0 +1,40 @@
+
+.logo{
+    max-width: 250px;
+    max-height: auto;
+    height: auto;
+    width: auto;
+}
+.logo{
+    max-width: 250px;
+    max-height: auto;
+    height: auto;
+    width: auto;
+}
+.center{
+    text-align: center;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    background-color: purple;
+    color: white;
+}
+
+.center2{
+    text-align: center;
+}
+
+.center3{
+    text-align: center;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    background-color: red;
+    color: white;
+}
+
+#remove{
+    text-decoration: none;
+}

@@ -1,40 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="{% url 'dashboard' %}"> Back </a>
-    <h3> Quiz Details</h3>
-    Category : {{data.category}} <br>
-    Start Time : {{data.start_time}} <br>
-    End Time : {{data.end_time}} <br>
+{% extends 'BaseApp/base_after.html' %} {% block content %}
+<a href="{% url 'dashboard' %}"> Back </a>
+<h3>Quiz Details</h3>
+Category : {{data.category}} <br />
+Start Time : {{data.start_time}} <br />
+End Time : {{data.end_time}} <br />
 
-    <h3> Questions </h3>
-    {% for question in data.questions %}
-        <h2>{{question.title}}</h2>
-        <table>
-        <tr>
-        <th>Option Name</th>
-        <th>Your Option</th>
-        <th>Correct Option</th>
-        </tr>
-        {% for choice in question.choices %}
-            <tr>
-            <td>{{choice.title}}</td>
-            <td>{{choice.select}}</td>
-            <td>{{choice.correct}}</td> 
-            </tr>
+<h3>Questions</h3>
+{% for question in data.questions %}
+<h2>{{question.title}}</h2>
+<table>
+  <tr>
+    <th>Option Name</th>
+    <th>Your Option</th>
+    <th>Correct Option</th>
+  </tr>
+  {% for choice in question.choices %}
+  <tr>
+    <td>{{choice.title}}</td>
+    <td>{{choice.select}}</td>
+    <td>{{choice.correct}}</td>
+  </tr>
 
-        {% endfor %}
-        </table>
-        
-    {% endfor %}
+  {% endfor %}
+</table>
 
-
-
-</body>
-</html>
+{% endfor %} {% endblock content %}

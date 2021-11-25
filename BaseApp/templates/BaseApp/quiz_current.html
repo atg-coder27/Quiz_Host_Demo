@@ -1,0 +1,52 @@
+{% extends 'BaseApp/base_after.html' %}
+{% load static %}
+
+{% block cssfiles %}
+    <link rel="stylesheet" href="{% static 'css/quiz_current.css' %}">
+{% endblock cssfiles %}
+{% block content %}
+    {% comment %} <div class = "container">
+        <h1>Ongoing Quiz</h1>
+        <table class = "table" "table-light">
+            <thead class = "thead-dark">
+            <tr>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Start Time</th>
+            <th>End Time </th>
+            <th>Link </th>
+            </tr>
+            </thead>
+            {% for quiz in ongoing %}
+                <tr>
+                <td>{{quiz.category}}</td>
+                <td>{{quiz.status}}</td>
+                <td>{{quiz.start_time}} </td>
+                <td>{{quiz.end_time}} </td>
+                <td><a href="{% url 'quiz' quiz.id  %}">Quiz Link </a> </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div> {% endcomment %}
+
+    <div class = "container center2">
+        <h1 class = "display-1"> Ongoing Quizes </h1>
+        <div class = "row">
+        {% for quiz in ongoing %}
+                <div class = "col-sm-3 icon">
+                <a href="{% url 'quiz' quiz.id  %}" id = "remove">
+                    <div class = "center">
+                    <img src="{% static 'images/quiz.jpg' %} " alt="" class = "mx-auto logo">
+                    <br>
+                    <h3 class = "display-6">{{quiz}} </h3> 
+                    <p class = "lead">{{quiz.start_time}} </p> 
+                    <p class = "lead">{{quiz.end_time}} </p>
+                    <p class = "lead"> {{quiz.status}} </p>
+                    </div>
+                </a>
+                </div>
+        {% endfor %}
+        </div>
+
+    </div>
+{% endblock content %}

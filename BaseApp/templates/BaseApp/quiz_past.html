@@ -1,0 +1,28 @@
+{% extends 'BaseApp/base_after.html' %}
+
+{% block content %}
+    <div class = "container">
+        <h1> Completed Quiz </h1> <br>
+        <table class = "table">
+        <thead class = "thead-dark">
+        <tr>
+            <th scope = "col"> Category </th>
+            <th scope = "col"> Start Time</th>
+            <th scope = "col"> End Time</th>
+            <th scope = "col"> Response </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for quiz in completed %}
+            <tr>
+            <td>{{quiz.category}}</td>
+            <td>{{quiz.start_time}}</td>
+            <td>{{quiz.end_time}}</td>
+            <td><a href="{% url 'evalquiz' quiz.id %}"> Response </a> </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    
+{% endblock content %}

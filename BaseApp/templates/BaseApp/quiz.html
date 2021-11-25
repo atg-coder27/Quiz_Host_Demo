@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h3> Start Time </h3>
-    {{quiz.start_time}}
-    <h3> End Time </h3>
-    {{quiz.end_time}}
-    <br> <br>
+{% extends 'BaseApp/base_after.html' %} {% block content %}
+<div class="container centralize">
+  <h1 class="display-1">Instructions</h1>
+
+  <p class="lead">
+    Student is supposed to give quiz in the schduled time. Answers will be
+    auto-saved. All the best..
+  </p>
+  <h5>Start Time</h5>
+  <p class="lead">{{quiz.start_time}}</p>
+  <h5>End Time</h5>
+  <p class="lead">{{quiz.end_time}}</p>
+  <br />
+  <br />
+  <form action="{% url 'question' quiz.id 1 %}" method="GET">
+    <button class="btn btn-outline-primary" type="submit">
+      Click Here To Start The Quiz
+    </button>
+    {% comment %}
     <a href="{% url 'question' quiz.id 1 %}"> Click Here to Start the quiz</a>
-</body>
-</html>
+    {% endcomment %}
+  </form>
+</div>
+{% endblock content %}

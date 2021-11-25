@@ -1,0 +1,29 @@
+{% extends 'BaseApp/base_after.html' %}
+
+{% block content %}
+    <div class = "container">
+        <h1> Future Quiz </h1>
+        <table class = "table table-light">
+        <thead class = "thead-dark">
+        {% if future %}
+            <tr>
+                <th>Category</th>
+                <th>Start Time</th>
+                <th>End Time </th>
+            </tr>
+            </thead>
+            {% for quiz in future %}
+                <tr>
+                <td> {{quiz.category}}</td>
+                <td> {{quiz.start_time}} </td>
+                <td> {{quiz.end_time}} </td>
+                <td> {{quiz.status}} </td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% else %}
+            <br>
+            <h5> There are no schduled quizes for future </h5>
+        {% endif %}
+    </div>
+{% endblock content %}

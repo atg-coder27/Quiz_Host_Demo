@@ -1,14 +1,12 @@
-<!DOCTYPE html>
+{% extends 'BaseApp/base_before.html' %}
+{% load static %}
 {% load socialaccount %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h3>Login with Google</h3>
-    <a href="{% provider_login_url 'google' %}"> Login With Google</a>
-</body>
-</html>
+{% block cssfiles %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% endblock cssfiles %}
+{% block content %}
+    <div class = "container centralize">
+        <h3 class = "display-3">Login with Google</h3>
+        <a href="{% provider_login_url 'google' %}"> Login With Google</a>
+    </div>
+{% endblock content %}

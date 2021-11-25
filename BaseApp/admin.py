@@ -16,9 +16,9 @@ class QuestionAdmin(admin.ModelAdmin):
 class ChoiceMCQAdmin(admin.ModelAdmin):
     list_display = ('question','title','select','correct')
 
-# @admin.register(ChoiceSubjective)
-# class ChoceSubjectiveAdmin(admin.ModelAdmin):
-#     list_display = ('question','title','file','upload_time')
+@admin.register(ChoiceSubjective)
+class ChoceSubjectiveAdmin(admin.ModelAdmin):
+    list_display = ('question','title','file','upload_time')
 
 @admin.register(CompletedQuiz)
 class CompletedQuizAdmin(admin.ModelAdmin):

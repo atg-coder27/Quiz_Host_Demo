@@ -1,14 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1> Dashboard </h1>
-    <a href="{% url 'logout' %}"> Logout </a>
+
+{% extends 'BaseApp/base_after.html' %}
+{% load static %}
+{% block content %}
+    <div class = "container">
+        <br><br>
+    </div>
+
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-sm-6">
+                <p><h1 class = "display-1"> Welcome To The Online Quiz System </h1> </p> 
+                <ul class = "list-unstyled">
+                <li><p class = "lead"> A fast,responsive online platform for all types of quizes</p> </li>
+                <li><p class = "lead"> Work with people all around the world </p> </li>
+                </ul>
+            </div>
+            <div class = "col-sm-6">
+                <p><img src="{% static 'images/laptop.jpg' %}" alt="" class = "laptop"></p>
+            </div> 
+        </div>
+    </div>
+    {% comment %} <a href="{% url 'logout' %}"> Logout </a>
     <h1> </h1> 
     <h1>Ongoing Quiz</h1>
     <table>
@@ -63,10 +75,6 @@
         <td><a href="{% url 'evalquiz' quiz.id %}"> Response </a> </td>
         </tr><br>
     </table>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
 
-
-
-    
-</body>
-</html>
+{% endblock content %}>

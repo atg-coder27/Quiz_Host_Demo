@@ -1,4 +1,5 @@
-from django.http.response import HttpResponseRedirect
+from django.db.models.query import QuerySet
+from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from .forms import ChoiceMCQForm, SignUpForm,AuthForm,ChoiceMCQFormset
 from django.contrib.auth.models import User
@@ -15,11 +16,18 @@ from .models import Quiz,Question,ChoiceMCQ,ChoiceSubjective,CompletedChoiceMCQ,
 from datetime import datetime
 from django.forms import fields, modelformset_factory
 from .save import SaveToModel
+import json
+from rest_framework.response import Response
+from .serializers import QuestionSerializer
 
 # Create your views here.
 
+
 def HomeView(request):
     return render(request,'BaseApp/home.html')
+
+def RedirectHomeView(request):
+    return HttpResponseRedirect('/home')
 
 def SignUpView(request):
     if request.method ==  'POST':
@@ -101,6 +109,24 @@ def DashBoardView(request):
         'ongoing':ongoing_quiz,'future':future_quiz, 'completed':past_quiz}
     )
 
+def QuizCurrentView(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/home')
+    ongoing_quiz = Quiz.objects.filter(status = 'Ongoing')
+    return render(request,'BaseApp/quiz_current.html',{'ongoing':ongoing_quiz})
+
+def QuizPastView(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/home')
+    past_quiz = CompletedQuiz.objects.all()
+    return render(request,'BaseApp/quiz_past.html',{'completed':past_quiz})
+
+def QuizFutureView(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/home')
+    future_quiz = Quiz.objects.filter(status = 'Future')
+    return render(request,'BaseApp/quiz_future.html',{'future':future_quiz})
+
 def QuizView(request,id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/home')
@@ -128,6 +154,10 @@ def QuestionView(request,id,no):
         formset = ChoiceMCQFormset(queryset= queryset)
         last = len(Question.objects.filter(quiz = quiz))
         start = 1
+        question = question.__dict__
+        value = QuestionSerializer(question)
+        result = Response(value.data)
+        print(result)
         return render(request,'BaseApp/question.html',{"question":question,
         'form' : formset, "last" : last , "start" : start , "current" : no })
     
@@ -188,7 +218,9 @@ def EvaluatedQuizView(request,id):
 
     return render(request,"BaseApp/evalquiz.html",{'data':data})
 
-        
+
+def base(request):
+    return render(request,'BaseApp/base.html')       
 
     
         
